@@ -1,9 +1,21 @@
 stages:
+  - build
   - code style
   - test
 
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - vendor/
+
 before_script:
   - bash ci/docker_install.sh > /dev/null
+
+build:
+  stage: build
+  image: php:7.4-cli
+  script:
+    - composer install
 
 phpcs:
   stage: code style
@@ -22,6 +34,9 @@ phpstan:
 phpunit:
   stage: test
   image: php:7.4-cli
+  variables:
+    XDEBUG: 1
+    XDEBUG_MODE: coverage
   script:
     - composer install
     - composer phpunit
@@ -30,9 +45,6 @@ phpunit:
     paths:
       - var/log
     expire_in: 1 week
-  variables:
-    XDEBUG: 1
-    XDEBUG_MODE: coverage
   needs:
     - phpcs
     - phpstan
@@ -40,6 +52,9 @@ phpunit:
 infection:
   stage: test
   image: php:7.4-cli
+  variables:
+    XDEBUG: 1
+    XDEBUG_MODE: coverage
   script:
     - composer install
     - composer infection
@@ -47,9 +62,6 @@ infection:
     paths:
       - var/log
     expire_in: 1 week
-  variables:
-    XDEBUG: 1
-    XDEBUG_MODE: coverage
   needs:
     - phpcs
     - phpstan
