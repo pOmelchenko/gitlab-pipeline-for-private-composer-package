@@ -1,3 +1,5 @@
+image: php:7.4-cli
+
 stages:
   - build
   - code style
@@ -13,36 +15,29 @@ cache:
 
 build app:
   stage: build
-  image: php:7.4-cli
   script:
     - composer install
 
 phpcs:
   stage: code style
-  image: php:7.4-cli
   script:
-    - composer install
     - composer phpcs
   needs:
     - build app
 
 phpstan:
   stage: code style
-  image: php:7.4-cli
   script:
-    - composer install
     - composer phpstan
   needs:
     - build app
 
 phpunit:
   stage: test
-  image: php:7.4-cli
   variables:
     XDEBUG: 1
     XDEBUG_MODE: coverage
   script:
-    - composer install
     - composer phpunit
     - composer coverage-check
   artifacts:
@@ -55,12 +50,10 @@ phpunit:
 
 infection:
   stage: test
-  image: php:7.4-cli
   variables:
     XDEBUG: 1
     XDEBUG_MODE: coverage
   script:
-    - composer install
     - composer infection
   artifacts:
     paths:
