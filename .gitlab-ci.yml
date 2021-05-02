@@ -41,6 +41,8 @@ phpunit:
     - composer phpunit
     - composer coverage-check
   artifacts:
+    reports:
+      cobertura: var/log/cobertura.xml
     paths:
       - var/log
     expire_in: 1 week
