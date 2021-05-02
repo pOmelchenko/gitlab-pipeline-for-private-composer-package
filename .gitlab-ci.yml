@@ -6,15 +6,16 @@ stages:
 before_script:
   - bash ci/docker_install.sh > /dev/null
 
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - vendor/
+
 build app:
   stage: build
   image: php:7.4-cli
   script:
     - composer install
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - vendor/
 
 phpcs:
   stage: code style
