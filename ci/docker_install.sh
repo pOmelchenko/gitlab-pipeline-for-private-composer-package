@@ -11,6 +11,7 @@ apt-get install git -yqq
 
 if [[ -n ${XDEBUG} ]]; then
     pecl install xdebug
+    docker-php-ext-enable xdebug
     echo "xdebug installed!"
 fi
 
