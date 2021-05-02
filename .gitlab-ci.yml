@@ -40,6 +40,7 @@ phpunit:
   script:
     - composer phpunit
     - composer coverage-check
+  coverage: '/Total code coverage is \d+\.\d+/'
   artifacts:
     reports:
       cobertura: var/log/cobertura.xml
