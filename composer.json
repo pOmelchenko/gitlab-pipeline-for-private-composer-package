@@ -37,7 +37,7 @@
         "sort-packages": true
     },
     "scripts": {
-        "infection": "infection",
+        "infection": "infection --min-msi=50",
         "phpunit": "phpunit",
         "coverage-check": "coverage-check var/log/clover.xml 7",
         "phpcs": "phpcs",

@@ -1,9 +1,35 @@
-image: php:7.4-cli
+stages:
+  - code_style
+  - test
 
 before_script:
   - bash ci/docker_install.sh > /dev/null
 
-test:app:
+phpcs:
+  stage: code_style
+  image: php:7.4-cli
   script:
     - composer install
     - composer phpunit
+
+phpstan:
+  stage: code_style
+  image: php:7.4-cli
+  script:
+    - composer install
+    - composer phpstan
+
+phpunit:
+  stage: test
+  image: php:7.4-cli
+  script:
+    - composer install
+    - composer phpunit
+    - composer coverage-check
+
+infection:
+  stage: test
+  image: php:7.4-cli
+  script:
+    - composer install
+    - composer infection
