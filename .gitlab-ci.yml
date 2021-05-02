@@ -26,8 +26,13 @@ phpunit:
     - composer install
     - composer phpunit
     - composer coverage-check
+  artifacts:
+    paths:
+      - var/log
+    expire_in: 1 week
   variables:
     XDEBUG: 1
+    XDEBUG_MODE: coverage
   needs:
     - phpcs
     - phpstan
@@ -38,6 +43,10 @@ infection:
   script:
     - composer install
     - composer infection
+  artifacts:
+    paths:
+      - var/log
+    expire_in: 1 week
   variables:
     XDEBUG: 1
     XDEBUG_MODE: coverage
