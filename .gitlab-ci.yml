@@ -40,6 +40,7 @@ infection:
     - composer infection
   variables:
     XDEBUG: 1
+    XDEBUG_MODE: coverage
   needs:
     - phpcs
     - phpstan
