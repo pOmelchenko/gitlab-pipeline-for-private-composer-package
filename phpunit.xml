@@ -19,7 +19,7 @@
              <directory suffix=".php">./src</directory>
         </include>
         <report>
-            <clover outputFile="./var/log/clover.xml"/>
+            <clover outputFile="var/log/clover.xml"/>
         </report>
     </coverage>
 </phpunit>

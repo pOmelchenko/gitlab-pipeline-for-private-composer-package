@@ -1,8 +1,7 @@
 {
     "name": "pomelchenko/core",
     "type": "library",
-    "description": "description",
-    "minimum-stability": "stable",
+    "description": "MIT",
     "license": "proprietary",
     "authors": [
         {
@@ -10,11 +9,19 @@
             "email": "p.Omelchenko@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^7.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "infection/infection": "^0.22.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan": "^0.12.85",
+        "phpstan/phpstan-phpunit": "^0.12.18",
+        "phpunit/phpunit": "^9.5",
+        "rregeer/phpunit-coverage-check": "^0.3.1",
+        "squizlabs/php_codesniffer": "^3.6"
     },
     "autoload": {
         "psr-4": {
@@ -26,7 +33,22 @@
             "Tests\\": "tests/"
         }
     },
+    "config": {
+        "sort-packages": true
+    },
     "scripts": {
-        "phpunit": "phpunit"
+        "infection": "infection",
+        "phpunit": "phpunit",
+        "coverage-check": "coverage-check var/log/clover.xml 7",
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf",
+        "phpstan": "phpstan",
+        "test": [
+            "@phpcs",
+            "@phpstan",
+            "@phpunit",
+            "@coverage-check",
+            "@infection"
+        ]
     }
 }
