@@ -10,7 +10,7 @@ phpcs:
   image: php:7.4-cli
   script:
     - composer install
-    - composer phpunit
+    - composer phpcs
 
 phpstan:
   stage: code style
