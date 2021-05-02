@@ -20,6 +20,7 @@
         </include>
         <report>
             <clover outputFile="var/log/clover.xml"/>
+            <cobertura outputFile="var/log/cobertura.xml"/>
         </report>
     </coverage>
 </phpunit>
