@@ -11,7 +11,7 @@ cache:
 before_script:
   - bash ci/docker_install.sh > /dev/null
 
-build:
+build app:
   stage: build
   image: php:7.4-cli
   script:
@@ -23,6 +23,8 @@ phpcs:
   script:
     - composer install
     - composer phpcs
+  needs:
+    - build app
 
 phpstan:
   stage: code style
@@ -30,6 +32,8 @@ phpstan:
   script:
     - composer install
     - composer phpstan
+  needs:
+    - build app
 
 phpunit:
   stage: test
