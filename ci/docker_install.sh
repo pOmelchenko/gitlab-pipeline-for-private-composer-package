@@ -9,5 +9,9 @@ set -xe
 apt-get update -yqq
 apt-get install git -yqq
 
+if [[ -z "${XDEBUG}" ]]; then
+    pecl install xdebug
+fi
+
 #get composer:
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

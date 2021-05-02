@@ -1,19 +1,19 @@
 stages:
-  - code_style
+  - code style
   - test
 
 before_script:
   - bash ci/docker_install.sh > /dev/null
 
 phpcs:
-  stage: code_style
+  stage: code style
   image: php:7.4-cli
   script:
     - composer install
     - composer phpunit
 
 phpstan:
-  stage: code_style
+  stage: code style
   image: php:7.4-cli
   script:
     - composer install
@@ -26,6 +26,11 @@ phpunit:
     - composer install
     - composer phpunit
     - composer coverage-check
+  variables:
+    XDEBUG: 1
+  needs:
+    - phpcs
+    - phpstan
 
 infection:
   stage: test
@@ -33,3 +38,8 @@ infection:
   script:
     - composer install
     - composer infection
+  variables:
+    XDEBUG: 1
+  needs:
+    - phpcs
+    - phpstan
