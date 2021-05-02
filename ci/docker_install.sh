@@ -9,8 +9,9 @@ set -xe
 apt-get update -yqq
 apt-get install git -yqq
 
-if [[ -z "${XDEBUG}" ]]; then
+if [[ -n ${XDEBUG} ]]; then
     pecl install xdebug
+    echo "xdebug installed!"
 fi
 
 #get composer:
