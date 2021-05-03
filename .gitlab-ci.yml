@@ -6,9 +6,15 @@ stages:
   - test
 
 before_script:
-  - bash ci/docker_install.sh > /dev/null
-
-
+  - apt-get update -yqq
+  - apt-get install git -yqq
+  - |
+    if [[ -n ${XDEBUG} ]]; then
+        pecl install xdebug
+        docker-php-ext-enable xdebug
+        echo "xdebug installed!"
+    fi
+  - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 build app:
   stage: build
