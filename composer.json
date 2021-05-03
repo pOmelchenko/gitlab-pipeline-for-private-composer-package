@@ -39,7 +39,7 @@
     "scripts": {
         "infection": "infection --min-msi=50",
         "phpunit": "phpunit",
-        "coverage-check": "coverage-check var/log/clover.xml 7",
+        "coverage-check": "coverage-check var/log/clover.xml 50",
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
         "phpstan": "phpstan",
