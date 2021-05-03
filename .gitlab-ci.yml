@@ -8,15 +8,16 @@ stages:
 before_script:
   - bash ci/docker_install.sh > /dev/null
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - vendor/
+
 
 build app:
   stage: build
   script:
     - composer install
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - vendor/
 
 phpcs:
   stage: code style
@@ -24,6 +25,11 @@ phpcs:
     - composer phpcs
   needs:
     - build app
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - vendor/
+    policy: pull
 
 phpstan:
   stage: code style
@@ -31,6 +37,11 @@ phpstan:
     - composer phpstan
   needs:
     - build app
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - vendor/
+    policy: pull
 
 phpunit:
   stage: test
@@ -41,6 +52,11 @@ phpunit:
     - composer phpunit
     - composer coverage-check
   coverage: '/Total code coverage is \d+\.\d+/'
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - vendor/
+    policy: pull
   artifacts:
     reports:
       cobertura: var/log/cobertura.xml
@@ -58,6 +74,11 @@ infection:
     XDEBUG_MODE: coverage
   script:
     - composer infection
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - vendor/
+    policy: pull
   artifacts:
     paths:
       - var/log
