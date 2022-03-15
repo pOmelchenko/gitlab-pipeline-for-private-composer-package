@@ -7,7 +7,7 @@ stages:
 
 before_script:
   - apt-get update -yqq
-  - apt-get install git -yqq
+  - apt-get install git zip -yqq
   - |
     if [[ -n ${XDEBUG} ]]; then
         pecl install xdebug
