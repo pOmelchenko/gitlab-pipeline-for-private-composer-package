@@ -76,6 +76,7 @@ phpunit:
 infection:
   stage: test
   variables:
+    XDEBUG: 1
     XDEBUG_MODE: coverage
   script:
     - composer infection
