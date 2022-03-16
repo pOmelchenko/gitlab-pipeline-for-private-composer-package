@@ -19,6 +19,6 @@ class ApplicationTest extends TestCase
 
     public function testT(): void
     {
-        self::assertEquals(10', (new Application())->t());
+        self::assertEquals(10, (new Application())->t());
     }
 }
