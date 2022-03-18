@@ -18,9 +18,4 @@ class Application
     {
         return 'bye';
     }
-
-    public function t(): int
-    {
-        return 10;
-    }
 }
