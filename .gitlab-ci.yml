@@ -27,10 +27,10 @@ build app:
 
 phpcs:
   stage: code style
-  script:
-    - php vendor/bin/phpcs
   needs:
     - build app
+  script:
+    - php vendor/bin/phpcs
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
@@ -39,10 +39,10 @@ phpcs:
 
 phpstan:
   stage: code style
-  script:
-    - php vendor/bin/phpstan
   needs:
     - build app
+  script:
+    - php vendor/bin/phpstan
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
@@ -51,6 +51,9 @@ phpstan:
 
 phpunit:
   stage: test
+  needs:
+    - phpcs
+    - phpstan
   variables:
     XDEBUG: 1
     XDEBUG_MODE: coverage
@@ -69,12 +72,12 @@ phpunit:
     paths:
       - var/log
     expire_in: 1 week
-  needs:
-    - phpcs
-    - phpstan
 
 infection:
   stage: test
+  needs:
+    - phpcs
+    - phpstan
   variables:
     XDEBUG: 1
     XDEBUG_MODE: coverage
@@ -89,6 +92,3 @@ infection:
     paths:
       - var/log
     expire_in: 1 week
-  needs:
-    - phpcs
-    - phpstan
