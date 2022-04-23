@@ -28,7 +28,7 @@ build app:
 phpcs:
   stage: code style
   script:
-    - composer phpcs
+    - php vendor/bin/phpcs
   needs:
     - build app
   cache:
@@ -40,7 +40,7 @@ phpcs:
 phpstan:
   stage: code style
   script:
-    - composer phpstan
+    - php vendor/bin/phpstan
   needs:
     - build app
   cache:
@@ -55,8 +55,8 @@ phpunit:
     XDEBUG: 1
     XDEBUG_MODE: coverage
   script:
-    - composer phpunit
-    - composer coverage-check
+    - php vendor/bin/phpunit
+    - php vendor/bin/coverage-check var/log/clover.xml 50
   coverage: '/Total code coverage is \d+\.\d+/'
   cache:
     key: ${CI_COMMIT_REF_SLUG}
@@ -79,7 +79,7 @@ infection:
     XDEBUG: 1
     XDEBUG_MODE: coverage
   script:
-    - composer infection
+    - php vendor/bin/infection --min-msi=50
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
