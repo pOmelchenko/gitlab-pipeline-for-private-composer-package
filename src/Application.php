@@ -21,6 +21,6 @@ class Application
 
     public function help(): string
     {
-        retun 'help';
+        return 'help';
     }
 }
