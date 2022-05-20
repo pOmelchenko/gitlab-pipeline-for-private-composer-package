@@ -19,6 +19,6 @@ class ApplicationTest extends TestCase
 
     public function testHelp(): void
     {
-        self::assertEquals('Help', (new Application())->help());
+        self::assertEquals('help', (new Application())->help());
     }
 }
