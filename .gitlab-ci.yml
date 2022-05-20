@@ -68,7 +68,9 @@ phpunit:
     policy: pull
   artifacts:
     reports:
-      cobertura: var/log/cobertura.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: var/log/cobertura.xml
     paths:
       - var/log
     expire_in: 1 week
