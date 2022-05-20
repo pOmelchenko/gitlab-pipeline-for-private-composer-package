@@ -18,4 +18,9 @@ class Application
     {
         return 'bye';
     }
+
+    public function help(): string
+    {
+        retun 'help';
+    }
 }
