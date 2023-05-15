@@ -99,6 +99,6 @@ infection:
 deploy:
   stage: deploy
   script:
-    - apk add curl
+    - apt-get install curl -yqq
     - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=<tag> "${CI_API_V4_URL}/projects/$CI_PROJECT_ID/packages/composer"'
   environment: production
