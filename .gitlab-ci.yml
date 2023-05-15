@@ -4,6 +4,7 @@ stages:
   - build
   - code style
   - test
+  - deploy
 
 before_script:
   - apt-get update -yqq
@@ -94,3 +95,10 @@ infection:
     paths:
       - var/log
     expire_in: 1 week
+
+deploy:
+  stage: deploy
+  script:
+    - apk add curl
+    - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=<tag> "${CI_API_V4_URL}/projects/$CI_PROJECT_ID/packages/composer"'
+  environment: production
