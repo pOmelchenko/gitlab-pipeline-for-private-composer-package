@@ -98,7 +98,14 @@ infection:
 
 deploy:
   stage: deploy
+  needs:
+    - infection
+    - phpunit
+  only:
+    refs:
+      - tags
+  when: manual
   script:
     - apt-get install curl -yqq
-    - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=<tag> "${CI_API_V4_URL}/projects/$CI_PROJECT_ID/packages/composer"'
+    - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=${CI_COMMIT_TAG} "${CI_API_V4_URL}/projects/$CI_PROJECT_ID/packages/composer"'
   environment: production
