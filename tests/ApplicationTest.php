@@ -9,7 +9,7 @@ class ApplicationTest extends TestCase
 {
     public function testInit(): void
     {
-        self::assertEquals('Started', (new Application())->init());
+        self::assertEquals('Started1', (new Application())->init());
     }
 
     public function testHello(): void
