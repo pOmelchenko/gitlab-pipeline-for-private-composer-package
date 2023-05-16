@@ -1,7 +1,7 @@
 {
     "name": "pomelchenko/core",
     "type": "library",
-    "description": "MIT",
+    "description": "Example of private package in gitlab registry",
     "license": "proprietary",
     "authors": [
         {
