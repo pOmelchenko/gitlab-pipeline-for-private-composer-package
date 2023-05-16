@@ -69,6 +69,7 @@ phpunit:
     policy: pull
   artifacts:
     reports:
+      junit: var/log/phpunit.xml
       coverage_report:
         coverage_format: cobertura
         path: var/log/cobertura.xml

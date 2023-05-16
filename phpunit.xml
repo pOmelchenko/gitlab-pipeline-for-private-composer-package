@@ -23,4 +23,7 @@
             <cobertura outputFile="var/log/cobertura.xml"/>
         </report>
     </coverage>
+    <logging>
+        <junit outputFile="var/log/phpunit.xml"/>
+    </logging>
 </phpunit>
